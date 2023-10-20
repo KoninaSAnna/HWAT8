@@ -8,35 +8,37 @@ import java.util.Locale;
 public class DataHelper {
     private static final Faker faker = new Faker(new Locale("en"));
 
-    private DataHelper(){
-    }
-    public static AuthInfo getAuthInfoTestData(){
-        return new AuthInfo ("vasya","qwerty123");
+    private DataHelper() {
     }
 
-    private static String generateRandomLogin(){
-        return faker.name() .username();
-    }
-    private static String generateRandomPassword(){
-        return faker.internet() .password();
+    public static AuthInfo getAuthInfoTestData() {
+        return new AuthInfo("vasya", "qwerty123");
     }
 
-    public static AuthInfo generateRandomUser(){
+    private static String generateRandomLogin() {
+        return faker.name().username();
+    }
+
+    private static String generateRandomPassword() {
+        return faker.internet().password();
+    }
+
+    public static AuthInfo generateRandomUser() {
         return new AuthInfo(generateRandomLogin(), generateRandomPassword());
     }
 
-    public static Verification generateRandomVerificationCode(){
-        return new Verification (faker.numerify("######"));
+    public static Verification generateRandomVerificationCode() {
+        return new Verification(faker.numerify("######"));
     }
 
     @Value
-    public static class AuthInfo{
+    public static class AuthInfo {
         String login;
         String password;
     }
 
     @Value
-    public static class Verification{
+    public static class Verification {
         String code;
     }
 }

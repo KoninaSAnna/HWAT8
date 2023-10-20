@@ -24,12 +24,12 @@ public class LoginTest {
 
     @BeforeEach
     void setUp() {
-        loginPage = open("http://localhost:9999" , LoginPage.class);
+        loginPage = open("http://localhost:9999", LoginPage.class);
     }
 
     @Test
     @DisplayName("Should successfully login to dashboard with exist login and password from sut test data")
-    void positiveTest(){
+    void positiveTest() {
         var authInfo = DataHelper.getAuthInfoTestData();
         var verificationPage = loginPage.validLogin(authInfo);
         verificationPage.verificationPageVisible();
@@ -37,4 +37,4 @@ public class LoginTest {
         verificationPage.validVerify(verificationCode.getCode());
     }
 
-  }
+}

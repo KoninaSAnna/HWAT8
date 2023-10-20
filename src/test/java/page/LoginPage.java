@@ -17,15 +17,15 @@ public class LoginPage {
     private final SelenideElement errorNotification = $("[data-test-id='error-notification'] notification__content");
 
 
-    public void verifyErrorNotification(String expectedText){
+    public void verifyErrorNotification(String expectedText) {
         errorNotification.shouldHave(Condition.exactText(expectedText)).shouldBe(visible);
     }
 
-    public VerificationPage validLogin(DataHelper.AuthInfo info){
-    loginField.setValue(info.getLogin());
-    passwordField.setValue(info.getPassword());
-    loginButton.click();
-    return new VerificationPage();
+    public VerificationPage validLogin(DataHelper.AuthInfo info) {
+        loginField.setValue(info.getLogin());
+        passwordField.setValue(info.getPassword());
+        loginButton.click();
+        return new VerificationPage();
     }
 
 }

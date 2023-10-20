@@ -1,7 +1,6 @@
 package data;
 
 import lombok.SneakyThrows;
-import lombok.var;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -12,15 +11,15 @@ import java.sql.SQLException;
 public class SQLHelper {
     private static final QueryRunner runner = new QueryRunner();
 
-    private  SQLHelper() {
+    private SQLHelper() {
     }
 
-    private static Connection getConn() throws SQLException{
+    private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
     }
 
     @SneakyThrows
-    public static DataHelper.Verification getVerificationCode(){
+    public static DataHelper.Verification getVerificationCode() {
         var codeSQL = "SELECT code FROM auth_codes ORDER BY created DESC LIMIT 1";
         var conn = getConn();
         var code = runner.query(conn, codeSQL, new ScalarHandler<String>());
@@ -28,7 +27,7 @@ public class SQLHelper {
     }
 
     @SneakyThrows
-    public static void  cleanDatabase(){
+    public static void cleanDatabase() {
         var connection = getConn();
         runner.execute(connection, "DELETE FROM auth_codes");
         runner.execute(connection, "DELETE FROM card_transactions");
@@ -37,7 +36,7 @@ public class SQLHelper {
     }
 
     @SneakyThrows
-    public static void cleanAuthCodes(){
+    public static void cleanAuthCodes() {
         var connection = getConn();
         runner.execute(connection, "DELETE FROM auth_codes");
     }
